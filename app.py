@@ -1,4 +1,7 @@
-#!/usr/bin/env python3
+# Emm, err, so true: http://blog.est.im/post/34288214582
+import http.server
+http.server.BaseHTTPRequestHandler.address_string = lambda x:x.client_address[0]
+
 
 import bottle
 import os
