@@ -5,14 +5,15 @@ import os
 
 import exercise1
 import exercise2
-import timed_pw
+import exercise3
 
 
 app = bottle.Bottle()
 app.mount('/exercise1/', exercise1.app)
 app.mount('/exercise2/', exercise2.app)
+app.mount('/exercise3/', exercise3.app)
 
-@app.route('/', template='index')
+@app.route('/', template='index.html')
 def contact():
     return {}
 
