@@ -10,3 +10,6 @@ exercise2:
 exercise3:
   token: secret3
   secret_time: 1
+
+exercise4:
+  token: secret4

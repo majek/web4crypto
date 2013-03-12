@@ -1,0 +1,22 @@
+<pre>
+[ ] I'm an application that memorizes strings.
+[ ] I have a small hash table implemented here:
+
+hash_table = [[] for i in range({{ N }})]
+
+[ ] I save the string there:
+
+bucket = hash_table[abs(string.__hash__()) % {{ N }}]
+if string not in bucket:
+    bucket.append( string )
+
+
+[ ] BTW, I also clean up the hash table once in a while
+[ ] to make sure I don't crash due to excesive memory usage!
+
+[+] Your task is to guess to overflow a bucket and DOS me.
+</pre>
+<form method="POST" action=".">
+  <input name="string" type="text" />
+  <input type="submit" />
+</form>
