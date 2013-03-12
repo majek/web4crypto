@@ -1,3 +1,4 @@
+import mybottle
 import bottle
 import struct
 
@@ -24,7 +25,7 @@ x1 = gen.__next__()
 print("[ ] Exercise2 secret: %r" % (secret,))
 
 
-app = bottle.Bottle()
+app = mybottle.Bottle()
 
 @app.get('/', template='exercise2.html')
 def login_form():

@@ -2,6 +2,7 @@ import string
 import time
 import random
 import bottle
+import mybottle
 
 import myconfig
 config = myconfig.load('exercise3')
@@ -18,7 +19,7 @@ secret = ''.join(random.choice(string.ascii_letters) for i in range(SECRET_LEN))
 print("[ ] Exercise3 secret: %r  time: %r" % (secret, secret_time))
 
 
-app = bottle.Bottle()
+app = mybottle.Bottle()
 
 @app.get('/', template='exercise3.html')
 def login_form():
