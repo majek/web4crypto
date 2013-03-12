@@ -1,10 +1,8 @@
 import bottle
-import yaml
 import struct
 
-
-with open('config.yaml') as f:
-    config = yaml.load(f.read())['exercise2']
+import myconfig
+config = myconfig.load('exercise2')
 
 
 def _lcg(state):

@@ -1,12 +1,12 @@
 
 exercise1:
-  seed: 0
+  seed: 1
   token: secret1
 
 exercise2:
-  seed: 0
+  seed: 1
   token: secret2
 
 exercise3:
   token: secret3
-  secret_time: 0
+  secret_time: 1

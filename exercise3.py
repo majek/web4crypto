@@ -3,10 +3,8 @@ import time
 import random
 import bottle
 
-import yaml
-
-with open('config.yaml') as f:
-    config = yaml.load(f.read())['exercise3']
+import myconfig
+config = myconfig.load('exercise3')
 
 
 SECRET_LEN = 12
