@@ -4,12 +4,14 @@
 
 hash_table = [[] for i in range({{ N }})]
 
-[ ] I save the string there:
+[ ] I save the string like that:
 
-bucket = hash_table[abs(string.__hash__()) % {{ N }}]
+hash = struct.unpack('I', hashlib.md5(string.encode('ascii')).digest()[:4])[0]
+bucket = hash_table[hash % {{ N }}]
 if string not in bucket:
     bucket.append( string )
 
+[ ] It's using md5! It's super secure for hash table!
 
 [ ] BTW, I also clean up the hash table once in a while
 [ ] to make sure I don't crash due to excesive memory usage!

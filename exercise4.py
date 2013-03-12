@@ -3,6 +3,8 @@ import time
 import random
 import bottle
 import mybottle
+import hashlib
+import struct
 
 import myconfig
 config = myconfig.load('exercise4')
@@ -16,7 +18,7 @@ saved_items = 0
 hash_table = [[] for i in range(N)]
 
 def hash_table_last(s):
-    h = abs(s.__hash__())
+    h = struct.unpack('I', hashlib.md5(s.encode('ascii')).digest()[:4])[0]
     bucket = hash_table[h % N]
     if len(bucket) < 1:
         return None
@@ -25,7 +27,7 @@ def hash_table_last(s):
 
 def hash_table_add(s):
     global saved_items
-    h = abs(s.__hash__())
+    h = struct.unpack('I', hashlib.md5(s.encode('ascii')).digest()[:4])[0]
     bucket = hash_table[h % N]
     if s in bucket:
         return True, False
@@ -51,8 +53,9 @@ def login_form():
 @app.post('/')
 def login_submit():
     s = bottle.request.forms.get('string')[:64]
-    s.replace('<', '').replace('>','')
-    #print("s=%r b=%i" % (s, abs(s.__hash__()) % N))
+    s = s.replace('<', '').replace('>','')
+    #h = struct.unpack('I', hashlib.md5(s.encode('ascii')).digest()[:4])[0]
+    #print("s=%r b=%i" % (s, h % N))
     added, bucket_full = hash_table_add(s)
     if added:
         if saved_items > SAVED_ITEMS_LIMIT:
@@ -67,6 +70,6 @@ def login_submit():
 
     else:
         return bottle.abort(500, "CRASH! Hash table buffer too long! " \
-                                "Last item in the buffer: %s" \
+                                "Last item in the buffer: %s " \
                                 "No reward this time." % (
                 hash_table_last(s),))
