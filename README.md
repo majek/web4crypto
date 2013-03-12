@@ -17,8 +17,12 @@ To run:
 
 To deploy on heroku:
 
-    # amend config.yaml
     $ heroku create
     $ heroku scale web=1
     $ git push heroku master
 
+Alternatively:
+
+    # amend config.yaml.deployment
+    $ python myconfig.py
+    $ heroku config:add CONFIG=...
