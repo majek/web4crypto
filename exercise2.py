@@ -34,7 +34,7 @@ def login_form():
 @app.post('/')
 def login_submit():
     password = bottle.request.forms.get('password')
-    if password and int(password) == secret:
+    if password and password == str(secret):
         return "Your predition is CORRECT! LCG are indeed reversible. " \
                "Your reward, the secret token #2: %r (save it!)" % (config['token'],)
     else:
