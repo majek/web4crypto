@@ -1,0 +1,27 @@
+<pre>
+[ ] This is my PRNG code:
+
+def _lcg(state):
+    return (1103515245*state + 12345) % (2**31)
+
+def lcg_generator(seed):
+    state = seed
+    while True:
+        state = _lcg(state)
+        yield state
+
+with open('/dev/urandom', 'rb') as f:
+    seed, = struct.unpack('I', f.read(4))
+
+gen = lcg_generator(seed)
+
+[ ] See - my PRNG is initialized using super secure seed!
+[ ] First value of the PRNG is:
+{{x0}}
+
+[+] Your task is to predict the second value of my LCG PRNG:
+</pre><br>
+<form method="POST" action=".">
+  <input name="password" type="text" />
+  <input type="submit" />
+</form>
