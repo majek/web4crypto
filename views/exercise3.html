@@ -1,7 +1,19 @@
-<p>Password of length {{ secret_len }} was generated {{ secret_delta_time }} seconds ago.</p>
+<pre>
+[ ] {{ secret_delta_time }} seconds ago I generated a password.
+[ ] You will never crack it!
+[ ] Oh, I used python random module, and I initialized the
+[ ] seed like python does on some platforms:
 
-<p>Please enter password:<p><br>
+random.seed(int(time.time() * 256))
+
+[ ] The password was generated like that:
+
+secret = ''.join(random.choice(string.ascii_letters) for i in range({{ secret_len }}))
+
+
+[+] Your task is to guess the password:
+</pre>
 <form method="POST" action=".">
-  <input name="string" type="text" />
+  <input name="password" type="text" />
   <input type="submit" />
 </form>

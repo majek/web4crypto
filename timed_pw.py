@@ -2,7 +2,6 @@ import string
 import time
 import random
 import bottle
-import os
 
 import yaml
 
@@ -18,8 +17,7 @@ secret_time = config.get('secret_time', None) or time.time()
 random.seed(int(secret_time * 256))
 
 secret = ''.join(random.choice(string.ascii_letters) for i in range(SECRET_LEN))
-print("[.] Secret_time: %r" % (secret_time,))
-print("[.] Secret: %r" % (secret,))
+print("[ ] Exercise3 secret: %r  time: %r" % (secret, secret_time))
 
 
 app = bottle.Bottle()
@@ -34,13 +32,6 @@ def login_submit():
     password = bottle.request.forms.get('password')
     if password == secret:
         return "Your password was CORRECT! How's that possible! OMG! " \
-               "Your reward, the secret token (save it!): %r" % (config['token'],)
+               "Your reward, the secret token #3: %r (save it!)" % (config['token'],)
     else:
         bottle.abort(401, '''Your password was incorrect; try again.''')
-
-
-if __name__ == "__main__":
-    PORT = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=PORT, debug=True)
-
-
