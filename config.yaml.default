@@ -1,0 +1,10 @@
+
+exercise1:
+  token: secret1
+
+exercise2:
+  token: secret2
+
+exercise3:
+  token: secret3
+  secret_time: 1363040521.0048127

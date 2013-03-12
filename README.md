@@ -9,17 +9,15 @@ Requirements:
 
 To run:
 
+    $ ln -s config.yaml.default config.yaml
     $ make
-    $ python timed_pw.py
+    $ . venv/bin/activate
+    $ python app.py
 
- **Options**: on command line, user may enter 
 
- * an integer for optional password length (default is 10)
+To deploy on heroku:
 
- * flag -p to display password
+    # amend config.yaml
+    $ heroku create
+    $ git push heroku master
 
- **Date**: 20130311.
-
-1. `hashes.py`: Runs in Python 3.2. Adds a succession of strings to a hash table of size n until k-1 collisions are reached.
-
-[end]
