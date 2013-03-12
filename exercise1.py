@@ -39,8 +39,3 @@ def login_submit():
                "Your reward, the secret token #1: %r (save it!)" % (config['token'],)
     else:
         bottle.abort(401, '''Your prediction was incorrect; try again.''')
-
-
-if __name__ == "__main__":
-    PORT = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=PORT, debug=True)
