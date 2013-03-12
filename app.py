@@ -4,11 +4,13 @@ import bottle
 import os
 
 import exercise1
+import exercise2
 import timed_pw
+
 
 app = bottle.Bottle()
 app.mount('/exercise1/', exercise1.app)
-app.mount('/exercise3', timed_pw.app)
+app.mount('/exercise2/', exercise2.app)
 
 @app.route('/', template='index')
 def contact():
