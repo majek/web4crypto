@@ -15,7 +15,7 @@ secret_time = config.get('secret_time', None) or time.time()
 # This is the default seed for systems without _urandom
 random.seed(int(secret_time * 256))
 
-secret = ''.join(random.choice(string.ascii_letters) for i in range(SECRET_LEN))
+secret = ''.join(random.choice(string.ascii_letters) for _ in range(SECRET_LEN))
 print("[ ] Exercise3 secret: %r  time: %r" % (secret, secret_time))
 
 
