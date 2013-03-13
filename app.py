@@ -1,6 +1,7 @@
 import mybottle
 import os
 
+import exercise0
 import exercise1
 import exercise2
 import exercise3
@@ -12,6 +13,7 @@ import exercise8
 
 
 app = mybottle.Bottle()
+app.mount('/exercise0/', exercise0.app)
 app.mount('/exercise1/', exercise1.app)
 app.mount('/exercise2/', exercise2.app)
 app.mount('/exercise3/', exercise3.app)

@@ -1,4 +1,8 @@
 
+exercise0:
+  secret: zero
+  token: secret0
+
 exercise1:
   seed: 1
   token: secret1
