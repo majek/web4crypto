@@ -21,3 +21,7 @@ exercise5:
   v3: 3
   token: secret5
 
+exercise6:
+  secret: aaaaaa
+  token: secret6
+
