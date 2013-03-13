@@ -1,15 +1,34 @@
-Simple web servers for testing cryptographic tactics
-----------------------------------------------------
+Assignments for Pragmatic Crypto seminar:
+-----
+
+Part 1
+----
+
+Assignments 1-3:
+
+ * https://pragmaticcrypto.herokuapp.com/exercise1/
+ * https://pragmaticcrypto.herokuapp.com/exercise2/
+ * https://pragmaticcrypto.herokuapp.com/exercise3/
+
+
+Slides:
+
+  * https://speakerdeck.com/majek04/pragmatic-crypto-number-1
+
+
+
+
+
+How to run the server
+-----------
 
 Requirements:
 
  - python 3
  - virtualenv
 
-
 To run:
 
-    $ ln -s config.yaml.default config.yaml
     $ make
     $ . venv/bin/activate
     $ python app.py
