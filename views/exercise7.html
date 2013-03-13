@@ -1,0 +1,25 @@
+<pre>
+[*] Your task is to break as many passwords hashes
+[*] from recent leak as possible.
+
+[ ] Step 1. Download this SHA1.txt file:
+
+Option a) magnet link:
+
+magnet:?xt=urn:btih:ebfb106193eb7be439fd2f0ac5db8b3ff22ef416&dn=Linkedin+SHA1+passwords&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80
+
+Option b) piratebay link:
+
+http://thepiratebay.se/torrent/7334168/Linkedin_SHA1_passwords
+
+
+[ ] Step 2. Verify the file:
+
+$ shasum SHA1.txt
+97018baa4e931e0d02b4ae8ecb1d7d8b6c1b1230 SHA1.txt
+
+[ ] Step 3. Crack.
+
+    ./john --format=Raw-SHA1-LinkedIn ~/SHA1.txt
+
+</pre><br>
