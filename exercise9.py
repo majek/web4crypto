@@ -31,7 +31,7 @@ random.seed(config.get('seed', None) or seed)
 
 secret = ''.join(random.choice(corpus)
                  for _ in range(WORDS))
-secret_hash = hashlib.md5(secret.encode('ascii')).hexdigest()
+secret_hash = hashlib.sha512(secret.encode('ascii')).hexdigest()
 
 print("[ ] Exercise9 secret: %r" % (secret,))
 
