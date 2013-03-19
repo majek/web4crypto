@@ -1,18 +1,34 @@
 <pre>
 
-  http://www.englishclub.com/vocabulary/common-words-100.htm
+[+] I'm a nigerian virus. Please crack these hashes for me
+[+] as I can't afford a computer. BTW. the passwords are
+[+] composed of excatly {{length}} characters of digits.
 
-[+] Your task is to break this salted md5 checksum:
+[ ] Unsalted ("raw-sha1"):
 
-  salt= {{salt}}
-  hash= {{secret_hash}}
+{{ '\n'.join(unsalted) }}
 
-[ ] Original string is a {{secret_len}} character string,
-[ ] composed from characters from range [a-z0-9].
+[ ] Salted ("sha1-gen"):
+{{ '\n'.join(salted) }}
 
-[+] The original string is:
+[ ] Weakly salted ("sha1-gen"):
+{{ '\n'.join(weakly_salted) }}
+
+
+[.] Another side note, to generate all the possible passwords
+[ ] you may use this python script:
+
+import itertools
+import string
+
+length = 7
+corpus = string.digits
+
+try:
+    for a in itertools.product(corpus, repeat=length):
+        print(''.join(a))
+except IOError:
+    pass
+
+
 </pre><br>
-<form method="POST" action=".">
-  <input name="string" type="text" />
-  <input type="submit" />
-</form>

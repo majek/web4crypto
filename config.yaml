@@ -29,6 +29,6 @@ exercise6:
   secret: aaaaaa
   token: secret6
 
-exercise8:
-  secret:
-  token: secret8
+exercise9:
+  seed: 1
+  token: secret9

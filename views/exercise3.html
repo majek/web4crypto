@@ -10,6 +10,7 @@ random.seed(int(time.time() * 256))
 
 secret = ''.join(random.choice(string.ascii_letters) for i in range({{ secret_len }}))
 
+[!] (on a side note, you need python 3 for that. 3.2 or 3.3 should be okay)
 
 [+] Your task is to guess the password:
 </pre>

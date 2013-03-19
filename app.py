@@ -10,6 +10,7 @@ import exercise5
 import exercise6
 import exercise7
 import exercise8
+import exercise9
 
 
 app = mybottle.Bottle()
@@ -22,6 +23,7 @@ app.mount('/exercise5/', exercise5.app)
 app.mount('/exercise6/', exercise6.app)
 app.mount('/exercise7/', exercise7.app)
 app.mount('/exercise8/', exercise8.app)
+app.mount('/exercise9/', exercise9.app)
 
 
 @app.route('/', template='index.html')

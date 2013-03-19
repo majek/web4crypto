@@ -1,54 +1,43 @@
 import mybottle
 import bottle
+# We don't care about seed here.
 import random
 import string
 import hashlib
-import struct
 
-import myconfig
-config = myconfig.load('exercise8')
+LENGTH=7
+COUNT=30
 
-SECRET_LEN = 6
+def _gen_passwords(chars, length, count):
+    return [''.join(random.choice(chars) for _ in range(LENGTH)).encode('ascii')
+            for _ in range(count)]
 
-corpus = [
-    "the", "be", "to", "of", "and", "a", "in", "that", "have", "i", "it",
-    "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but",
-    "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will",
-    "my", "one", "all", "would", "there", "their", "what", "so", "up", "out",
-    "if", "about", "who", "get", "which", "go", "me", "when", "make", "can",
-    "like", "time", "no", "just", "him", "know", "take", "person", "into",
-    "year", "your", "good", "some", "could", "them", "see", "other", "than",
-    "then", "now", "look", "only", "come", "its", "over", "think", "also",
-    "back", "after", "use", "two", "how", "our", "work", "first", "well",
-    "way", "even", "new", "want", "because", "any", "these", "give", "day",
-    "most", "us"]
+def gen_unsalted(chars, length, count):
+    return [hashlib.sha1(p).hexdigest() for p in _gen_passwords(chars, length, count)]
 
+def gen_salted(chars, length, salt_length, count):
+    passwords =  _gen_passwords(chars, length, count)
+    salts =  _gen_passwords(chars, salt_length, count)
+    return [
+        '$SHA1p$%s$%s' % (salts[i].decode('ascii'),
+                          hashlib.sha1(salts[i] + passwords[i]).hexdigest())
+        for i in range(count)]
 
-
-with open('/dev/urandom', 'rb') as f:
-    seed, = struct.unpack('Q', f.read(8))
-random.seed(seed)
-
-chars = string.ascii_lowercase + string.digits
-secret = config.get('secret', None) or ''.join(random.choice(chars)
-                                           for _ in range(SECRET_LEN))
-secret_hash = hashlib.md5(secret.encode('ascii')).hexdigest()
-
-print("[ ] Exercise8 secret: %r  hash: %r" % (secret, secret_hash))
+def gen_weakly_salted(chars, length, salt, count):
+    passwords =  _gen_passwords(chars, length, count)
+    return [
+        '$SHA1p$%s$%s' % (salt.decode('ascii'),
+                          hashlib.sha1(salt + passwords[i]).hexdigest())
+        for i in range(count)]
 
 
 app = mybottle.Bottle()
 
 @app.get('/', template='exercise8.html')
 def login_form():
-    return {'secret_hash': secret_hash, 'secret_len':SECRET_LEN}
-
-
-@app.post('/')
-def login_submit():
-    result = bottle.request.forms.get('string')
-    if result and result == secret:
-        return "The value is CORRECT! Well done! " \
-               "Your reward, the secret token #8: %r (save it!)" % (config['token'],)
-    else:
-        bottle.abort(401, '''Nope, incorrect; try again.''')
+    return {
+        'unsalted': gen_unsalted(string.digits, LENGTH, COUNT),
+        'salted': gen_salted(string.digits, LENGTH, 4, COUNT),
+        'weakly_salted': gen_weakly_salted(string.digits, LENGTH, "aaaa".encode('ascii'), COUNT),
+        'length': LENGTH,
+        }
